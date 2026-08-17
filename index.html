@@ -3,23 +3,431 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caio — Designer</title>
+
+    <title>Caio — Designer Gráfico</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #111111;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu {
+            position: fixed;
+            bottom: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 100px;
+            z-index: 100;
+        }
+
+        .menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 19px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #A700FE;
+        }
+
+        /* =========================
+           HOME
+        ========================= */
+
+        .home {
+            width: 100%;
+            height: 100vh;
+            min-height: 700px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+        }
+
+        .logo {
+            width: 350px;
+            max-width: 55vw;
+        }
+
+        /* =========================
+           PROJETOS
+        ========================= */
+
+        .projects {
+            width: 100%;
+            min-height: 100vh;
+
+            padding: 120px 7vw 180px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .projects-title {
+            font-size: 42px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            margin-bottom: 70px;
+        }
+
+        .categories {
+            width: 100%;
+            max-width: 1200px;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 40px;
+        }
+
+        /* =========================
+           CAPAS
+        ========================= */
+
+        .category {
+            position: relative;
+
+            display: block;
+
+            width: 100%;
+            aspect-ratio: 16 / 10;
+
+            overflow: visible;
+
+            text-decoration: none;
+            color: #ffffff;
+
+            transform: translateY(0);
+
+            transition:
+                transform 0.4s ease;
+        }
+
+        /* Fundo roxo deslocado */
+
+        .category::before {
+            content: "";
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            left: 14px;
+            top: 14px;
+
+            background: #A700FE;
+
+            z-index: 0;
+
+            transition:
+                transform 0.4s ease;
+        }
+
+        /* Imagem */
+
+        .category img {
+            position: relative;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            z-index: 1;
+
+            transition:
+                transform 0.45s ease,
+                filter 0.45s ease;
+        }
+
+        /* Escurecimento */
+
+        .category::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background: rgba(0, 0, 0, 0);
+
+            z-index: 2;
+
+            transition:
+                background 0.4s ease;
+        }
+
+        /* Nome */
+
+        .category-name {
+            position: absolute;
+
+            left: 35px;
+            bottom: 30px;
+
+            z-index: 3;
+
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-weight: 500;
+
+            transition:
+                transform 0.4s ease;
+        }
+
+        /* Ver serviço */
+
+        .category-action {
+            position: absolute;
+
+            right: 35px;
+            bottom: 34px;
+
+            z-index: 3;
+
+            font-size: 14px;
+            letter-spacing: 1px;
+
+            opacity: 0;
+
+            transform: translateX(-15px);
+
+            transition:
+                opacity 0.4s ease,
+                transform 0.4s ease;
+        }
+
+        /* =========================
+           HOVER
+        ========================= */
+
+        .category:hover {
+            transform: translateY(-8px);
+        }
+
+        .category:hover::before {
+            transform: translate(6px, 6px);
+        }
+
+        .category:hover img {
+            transform: scale(1.04);
+            filter: brightness(0.65);
+        }
+
+        .category:hover::after {
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .category:hover .category-name {
+            transform: translateY(-5px);
+        }
+
+        .category:hover .category-action {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .menu {
+                bottom: 30px;
+                gap: 25px;
+            }
+
+            .menu a {
+                font-size: 14px;
+            }
+
+            .logo {
+                width: 230px;
+            }
+
+            .projects {
+                padding: 100px 25px 150px;
+            }
+
+            .projects-title {
+                font-size: 30px;
+                margin-bottom: 45px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .category-name {
+                font-size: 22px;
+                left: 22px;
+                bottom: 22px;
+            }
+
+            .category-action {
+                right: 22px;
+                bottom: 25px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-    <h1>CAIO</h1>
+    <!-- HOME -->
 
-    <h2>Designer Gráfico</h2>
+    <section class="home" id="home">
 
-    <p>
-        Portfólio de projetos em design gráfico, estamparia,
-        identidade visual e criação de artes.
-    </p>
+        <img
+            src="CAIOdsg@2x.png"
+            alt="Logo Caio"
+            class="logo"
+        >
 
-    <h2>Projetos</h2>
+    </section>
 
-    <p>Em breve, meus principais projetos estarão disponíveis aqui.</p>
+
+    <!-- PROJETOS -->
+
+    <section class="projects" id="projetos">
+
+        <h1 class="projects-title">
+            PROJETOS
+        </h1>
+
+
+        <div class="categories">
+
+            <!-- VETORES -->
+
+            <a href="vetores.html" class="category">
+
+                <img
+                    src="botoes/VETOR@2x.png"
+                    alt="Vetores"
+                >
+
+                <span class="category-name">
+                    VETORES
+                </span>
+
+                <span class="category-action">
+                    VER SERVIÇO →
+                </span>
+
+            </a>
+
+
+            <!-- SILK -->
+
+            <a href="silk.html" class="category">
+
+                <img
+                    src="botoes/SILK@2x.png"
+                    alt="Silk Screen"
+                >
+
+                <span class="category-name">
+                    SILK
+                </span>
+
+                <span class="category-action">
+                    VER SERVIÇO →
+                </span>
+
+            </a>
+
+
+            <!-- DTF -->
+
+            <a href="dtf.html" class="category">
+
+                <img
+                    src="botoes/DTF@2x.png"
+                    alt="DTF"
+                >
+
+                <span class="category-name">
+                    DTF
+                </span>
+
+                <span class="category-action">
+                    VER SERVIÇO →
+                </span>
+
+            </a>
+
+
+            <!-- SUBLIMAÇÃO -->
+
+            <a href="sublimacao.html" class="category">
+
+                <img
+                    src="botoes/SUBLIMAÇÃO@2x.png"
+                    alt="Sublimação"
+                >
+
+                <span class="category-name">
+                    SUBLIMAÇÃO
+                </span>
+
+                <span class="category-action">
+                    VER SERVIÇO →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU -->
+
+    <nav class="menu">
+
+        <a href="#projetos">
+            Projetos
+        </a>
+
+        <a href="#sobre">
+            Sobre mim
+        </a>
+
+        <a href="#contato">
+            Contato
+        </a>
+
+    </nav>
 
 </body>
 </html>
